@@ -1,0 +1,12 @@
+class CreateComments < ActiveRecord::Migration[5.1]
+  def change
+    create_table :comments do |t|
+      t.text :text
+      t.integer :author_id
+      t.integer :location_id
+      t.integer :photo_id
+
+      t.timestamps
+    end
+  end
+end

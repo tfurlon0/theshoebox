@@ -1,0 +1,21 @@
+<h1>Sign In</h1>
+
+<form action="/verify_credentials" method="post">
+  <div>
+    <label for="user_sign_in">Username</label>
+    <input id="user_sign_in" type="text" name="qs_username" placeholder="Enter your username...">
+  </div>
+  
+  <div>
+    <label for="pass">Password</label>
+    <input id="pass" type="password" name="qs_password" placeholder="Enter your password...">
+  </div>
+ 
+  <button>
+    Sign in
+  </button>
+</form>
+
+<nav>
+  New user? <a href="/sign_up">Sign up!</a>
+</nav>

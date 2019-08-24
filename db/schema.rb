@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221161615) do
+ActiveRecord::Schema.define(version: 20190820163921) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,6 +41,62 @@ ActiveRecord::Schema.define(version: 20180221161615) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "check_ins", force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "location_id"
+    t.string "image"
+    t.text "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "text"
+    t.integer "author_id"
+    t.integer "location_id"
+    t.integer "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "photo_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "address"
+    t.string "image"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "comments_count"
+    t.integer "likes_count"
+    t.integer "location_id"
+    t.text "caption"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
+    t.string "image"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

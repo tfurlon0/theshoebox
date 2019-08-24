@@ -1,0 +1,20 @@
+<h1>Create New Check In</h1>
+
+<form action="/create_check_in/<%= current_user.id %>" method="post">
+  <div>
+    <label for="browser_location"></label>
+    <input id="browser_location" name="qs_location" placeholder="Enter a location..." type="text">
+  </div>
+  <br>
+  <div>
+    <label for="browser_photo"><h5>Upload Photo</h5></label>
+    <input type="file" class="form-control-file" id="browser_photo" name="qs_photo">
+  </div>
+  <br>
+  <div>
+    <label for="browser_caption"></label>
+    <textarea for="browser_caption" name="qs_caption" placeholder="Enter a caption"></textarea>
+  </div>
+  
+  <input class="btn btn-success" type="submit" value="Check In!">
+</form>

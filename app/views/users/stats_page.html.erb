@@ -1,0 +1,12 @@
+<h1><%= @user.username %>'s Stats</h1>
+
+<dl>
+  <dt>Check Ins</dt>
+  <dd><%= @check_in_count %></dd>
+  
+  <dt>Locations Visited </dt>
+  <dd><% @user_location.each do |locate| %>
+  <%= locate.name %>
+  <% end %>
+  </dd>
+</dl>

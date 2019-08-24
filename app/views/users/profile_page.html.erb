@@ -1,0 +1,46 @@
+<div class="d-flex align-items-stretch">
+<div class="card" style="width: 18rem;">
+  <img src="<%= @user.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.username %>'s Bio</h5>
+    <p class="card-text"><%= @user.bio %></p>
+    <a href="/users/<%= @user.username %>/own_stats" class="btn btn-primary">Stats</a>
+    <a href="/new_check_in" class="btn btn-primary">Check In</a>
+  </div>
+</div>
+
+<div>
+  <table class="text-center" border="1">
+    <tr>
+      <th>Location</th>
+      <th>Caption</th>
+      <th>Date</th>
+      <th>Photo</th>    
+    </tr>
+    
+    <% @user_check_ins.each do |check| %>
+    <% if @user_check_ins == nil %>
+      <td> </td>
+    <% else %>
+    <tr>
+      <td>
+        <%= check.location.name %>
+      </td>
+        
+      <td>
+        <%= check.caption %>
+      </td>
+      
+      <td>
+        <%= check.created_at %>
+      </td>
+      
+      <td>
+        <img style="height: 12rem;" src="<%= check.image %>">    
+      </td>
+    </tr>
+     <%end%>
+    <%end%>
+  </table>
+</div>
+  

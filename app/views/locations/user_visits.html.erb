@@ -1,0 +1,36 @@
+<h1><%= @user.username %>'s Favorite Spots</h1>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Times Visted</th>
+    <th>Caption</th>
+    <th>Image</th>
+  </tr>
+
+  <% @user_location.each do |loc| %>
+  <tr>
+    <td>
+      <%=loc.name %>
+    </td>
+    
+    <td>
+      <%=loc.address %>
+    </td>
+    
+    <td>
+      <%= @count %>
+    </td>
+    
+    <td>
+      <%= loc.bio %>
+    </td>
+    
+    <td>
+      <img style="height: 12rem;" src="<%= loc.image %>">
+    </td>
+    <% end %>
+  
+  
+</table>
