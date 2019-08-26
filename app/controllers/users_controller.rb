@@ -1,17 +1,30 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!
+  def index
+    @users = User.all.order({ :username => :asc })
+
+    respond_to do |format|
+      format.json do
+        render({ :json => @users.as_json })
+      end
+
+      format.html do
+        render({ :template => "users/index.html" })
+      end
+    end
+  end
   
   def create_profile
-    user = User.new
+    @user = User.new
 
-    user.username = params.fetch(:qs_username, nil)
-    user.password = params.fetch(:qs_password)
-    user.password_confirmation = params.fetch(:qs_password_confirmation)
+    @user.username = params.fetch(:qs_username, nil)
+    @user.password = params.fetch(:qs_password)
+    @user.password_confirmation = params.fetch(:qs_password_confirmation)
     
-    save_status = user.save
+    save_status = @user.save
 
     if save_status == true
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       
       respond_to do |format|
         format.json do
@@ -19,7 +32,7 @@ class UsersController < ApplicationController
         end
 
         format.html do
-          redirect_to("/users/#{user.username}")
+          redirect_to("/users/#{@user.username}")
         end
       end
     else
@@ -86,6 +99,7 @@ class UsersController < ApplicationController
     
     user.username = params.fetch(:qs_username, user.username)
     user.bio = params.fetch(:qs_bio, user.bio)
+    user.image = params.fetch(:qs_photo, user.image)
     
     user.save
     

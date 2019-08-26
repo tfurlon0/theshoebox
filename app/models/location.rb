@@ -9,6 +9,9 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  name       :string
+#  lat        :float
+#  lng        :float
+#  color      :string
 #
 
 class Location < ApplicationRecord

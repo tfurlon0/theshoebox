@@ -1,24 +1,48 @@
-<h1>Sign Up</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<form action="/post_user" method="post">
-  <div>
-    <label for="username_sign_up">Username</label>
-    <input id="username_sign_up" type="text" name="qs_username" placeholder="Choose a username...">
-  </div>
-  
-  <div>
-    <label for="pass_up">Password</label>
-    <input id="pass_up" type="password" name="qs_password" placeholder="Choose a password...">
-  </div>
-  
-  <div>
-    <label for="pass_confirm">Password Confirmation</label>
-    <input id="pass_confirm" type="password" name="qs_password_confirmation" placeholder="Confirm your password...">
-  </div>
-  
-  <button>
-    Sign Up
-  </button>
-</form>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col align-self-start">
+    </div>
+    <div class="col align-self-center">
+      <h1>Sign Up</h1>
+      <form action="/post_user" method="post">
+        <div>
+          <label for="username_sign_up">Username</label>
+          <input id="username_sign_up" type="text" name="qs_username" placeholder="Choose a username...">
+        </div>
 
-Already have an account? <a href="/sign_in">Sign in!</a>
+        <div>
+          <label for="pass_up">Password</label>
+          <input id="pass_up" type="password" name="qs_password" placeholder="Choose a password...">
+        </div>
+
+        <div>
+          <label for="pass_confirm">Password Confirmation</label>
+          <input id="pass_confirm" type="password" name="qs_password_confirmation" placeholder="Confirm your password...">
+        </div>
+
+        <button class="btn btn-primary">
+          Sign Up
+        </button>
+      </form>
+
+      <nav>
+        Already have an account? <a href="/sign_in">Sign in!</a>
+      </nav>
+    </div>
+    <div class="col align-self-end">
+    </div>
+  </div>
+</div>

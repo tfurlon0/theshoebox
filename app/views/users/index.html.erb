@@ -1,0 +1,31 @@
+<h1>List of users</h1>
+
+<table border="1">
+  <tr>
+    <th>
+      Username
+    </th>
+    
+    <th>
+      Total Check Ins
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.username %>
+      </td>
+      
+      <td>
+        <%= user.check_ins.count %>
+      </td>
+
+      <td>
+        <a href="/users/<%= user.username %>">Show details</a>
+      </td>
+    </tr>
+  <% end %>
+</table>

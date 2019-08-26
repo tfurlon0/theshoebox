@@ -35,4 +35,8 @@ class NavigationController < ApplicationController
     render({ :template => "/navigation/settings.html.erb" })
   end
   
+  def shop
+    render({ :template => "/navigation/shop.html.erb" })
+  end
+  
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   match("/verify_credentials", { :controller => "navigation", :action => "add_cookie", :via => "post" })
   match("/sign_out", { :controller => "navigation", :action => "sign_out", :via => "get" })
   match("/settings/:qs_username", { :controller => "navigation", :action => "settings", :via => "get" })
+  match("/shop/:qs_username", { :controller => "navigation", :action => "shop", :via => "get" })
   
   
   # User Routes
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   match("/users/:qs_username/own_photos", { :controller => "users", :action => "own_photos", :via => "get" })
   match("/users/:qs_username/own_stats", { :controller => "users", :action => "stats", :via => "get" })
   match("/users/:qs_username/own_locations", {:controller => "users", :action => "locate", :via => "get" })
+  match("/discover/:qs_user_id", {:controller => "users", :action => "index", :via => "get" })
   
   # Update User
   
@@ -28,6 +30,10 @@ Rails.application.routes.draw do
   match("/create_check_in/:rt_user_id", { :controller => "check_ins", :action => "create", :via => "post" })
   
   match("/map/:qs_user_id", { :controller => "locations", :action => "map", :via => "get" })
+  
+  #Location Routes
+  
+  match("/locations/:qs_location_id", { :controller => "locations", :action => "show", :via => "get" })
   
   
   #------------------------------

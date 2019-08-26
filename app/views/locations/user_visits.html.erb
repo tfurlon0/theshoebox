@@ -1,36 +1,22 @@
 <h1><%= @user.username %>'s Favorite Spots</h1>
+ 
+<% @user_location.each do |loc| %>  
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-auto">
+      <img style="width: 15rem;" src="<%= loc.image %>" class="img-fluid" alt="<%= loc.name %>">
+    </div>
+    <div class="col">
+      <div class="card-block px-2">
+        <h5 class="card-title"><a href="/locations/<%=loc.id %>"><%=loc.name %></a></h5>
+        <p class="card-text"><%= loc.address %>
+          <br>
+        <%= loc.bio %></p>
+        <p class="card-text"><small class="text-muted">Last updated <%= time_ago_in_words(loc.created_at) %> ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table border="1">
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Times Visted</th>
-    <th>Caption</th>
-    <th>Image</th>
-  </tr>
+<% end %>
 
-  <% @user_location.each do |loc| %>
-  <tr>
-    <td>
-      <%=loc.name %>
-    </td>
-    
-    <td>
-      <%=loc.address %>
-    </td>
-    
-    <td>
-      <%= @count %>
-    </td>
-    
-    <td>
-      <%= loc.bio %>
-    </td>
-    
-    <td>
-      <img style="height: 12rem;" src="<%= loc.image %>">
-    </td>
-    <% end %>
-  
-  
-</table>

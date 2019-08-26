@@ -1,46 +1,51 @@
-<div class="d-flex align-items-stretch">
-<div class="card" style="width: 18rem;">
-  <img src="<%= @user.image %>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= @user.username %>'s Bio</h5>
-    <p class="card-text"><%= @user.bio %></p>
-    <a href="/users/<%= @user.username %>/own_stats" class="btn btn-primary">Stats</a>
-    <a href="/new_check_in" class="btn btn-primary">Check In</a>
+<br>
+<br>
+
+<div class ="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card rounded" style="width: 18rem;">
+        <img src="<%= @user.image %>" class="card-img-top rounded-top" alt="Go to settings to add a photo">
+          <div class="card-body">
+            <h5 class="card-title"><%= @user.username %>'s Bio</h5>
+              <p class="card-text"><%= @user.bio %></p>
+              <a href="/users/<%= @user.username %>/own_stats" class="btn btn-primary">Stats</a>
+             <% if @user == current_user %>
+              <a href="/new_check_in" class="btn btn-primary">Check In</a>
+             <% else %>
+              <a></a>
+             <%end%>
+          </div>
+      </div>
+    </div>
+
+  <div class="col-md-8">
+    <div>
+        <% @user_check_ins.each do |check| %>
+        <% if @user_check_ins == nil %>
+          <td> </td>
+        <% else %>
+
+        <div class="card">
+          <div class="row no-gutters">
+            <div class="col-auto">
+              <% if check.image != nil %>
+              <img style="width: 15rem;" src="<%= check.image %>" class="img-fluid" alt="<%= check.location.name %>">
+              <% else %>
+              <img style="width: 15rem;">
+              <%end%>
+            </div>
+            <div class="col">
+              <div class="card-block px-2">
+                <h5 class="card-title"><a href="/locations/<%=check.id %>"><%=check.location.name %></a></h5>
+                <%= check.caption %>
+                <p class="card-text"><small class="text-muted"><%= time_ago_in_words(check.created_at) %> ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+         <%end%>
+         <%end%>
+    </div>
   </div>
 </div>
-
-<div>
-  <table class="text-center" border="1">
-    <tr>
-      <th>Location</th>
-      <th>Caption</th>
-      <th>Date</th>
-      <th>Photo</th>    
-    </tr>
-    
-    <% @user_check_ins.each do |check| %>
-    <% if @user_check_ins == nil %>
-      <td> </td>
-    <% else %>
-    <tr>
-      <td>
-        <%= check.location.name %>
-      </td>
-        
-      <td>
-        <%= check.caption %>
-      </td>
-      
-      <td>
-        <%= check.created_at %>
-      </td>
-      
-      <td>
-        <img style="height: 12rem;" src="<%= check.image %>">    
-      </td>
-    </tr>
-     <%end%>
-    <%end%>
-  </table>
-</div>
-  

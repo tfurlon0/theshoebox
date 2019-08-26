@@ -1,68 +1,35 @@
 class LocationsController < ApplicationController
-  def list
-    @locations = Location.all
-
-    render("location_templates/list.html.erb")
+  
+  def address_to_geo(address)
+    require 'open-uri'
+    url = "http://maps.google.googleapis.com/maps/api/geocode/json?address" + URI.encode(address)
+    parsed_data = JSON.params(open(url).read)
+    lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+    lng = parsed_data["results"][0]["geometry"]["location"]["lng"]
+    return [lat,lng]
   end
-
-  def details
-    @location = Location.where({ :id => params.fetch("id_to_display") }).first
-
-    render("location_templates/details.html.erb")
-  end
-
-  def blank_form
+  
+  def create
     @location = Location.new
-
-    render("location_templates/blank_form.html.erb")
-  end
-
-  def save_new_info
-    @location = Location.new
-
-    @location.address = params.fetch("address")
-    @location.image = params.fetch("image")
-    @location.bio = params.fetch("bio")
-    @location.name = params.fetch("name")
-
-    if @location.valid?
-      @location.save
-
-      redirect_to("/locations", { :notice => "Location created successfully." })
+    @location.address = params.fetch(:qs_address)
+    @location.name = params.fetch(:qs_name)
+    @location.bio = params.fetch(:qs_bio)
+    @location.color = ["blue", "red", "purple", "yellow", "green"].sample
+    
+    latlng = address_to_geo(params[:qs_address])
+    @location.lat = latlng[0]
+    @location.lng = latlng[1]
+    
+    if @location.save
+      redirect_to("/locations/map.html.erb", :notice => "Place created successfully.")
     else
-      render("location_templates/blank_form.html.erb")
+      render("new")
     end
   end
-
-  def prefilled_form
-    @location = Location.where({ :id => params.fetch("id_to_prefill") }).first
-
-    render("location_templates/prefilled_form.html.erb")
-  end
-
-  def save_edits
-    @location = Location.where({ :id => params.fetch("id_to_modify") }).first
-
-    @location.address = params.fetch("address")
-    @location.image = params.fetch("image")
-    @location.bio = params.fetch("bio")
-    @location.name = params.fetch("name")
-
-    if @location.valid?
-      @location.save
-
-      redirect_to("/locations/" + @location.id.to_s, { :notice => "Location updated successfully." })
-    else
-      render("location_templates/prefilled_form.html.erb")
-    end
-  end
-
-  def remove_row
-    @location = Location.where({ :id => params.fetch("id_to_remove") }).first
-
-    @location.destroy
-
-    redirect_to("/locations", { :notice => "Location deleted successfully." })
+  
+  def show
+    @the_location_id = params.fetch(:qs_location_id)
+    @the_location = Location.where(:id => @the_location_id)
   end
   
   def map

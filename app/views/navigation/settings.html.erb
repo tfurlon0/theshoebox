@@ -7,7 +7,10 @@
       <input id="browser_username" type="text" name="qs_username" placeholder="Update username..." value="<%= current_user.username %>">
       
       <label for="browser_bio">Bio</label>
-      <textarea id="browser_bio" type="text" name="qs_bio" placeholder="Update bio..." value="<%= current_user.bio %>"></textarea>
+      <textarea id="browser_bio" type="text" name="qs_bio" placeholder="Enter a bio..."><%= current_user.bio %></textarea>
+      
+      <label for="browser_photo">Profile Photo</label>
+      <input id="browser_photo" type="text" name="qs_photo" placeholder="Enter image URL" value="<%= current_user.image %>">
       
       <button>
         Update User
