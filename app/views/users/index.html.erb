@@ -1,31 +1,28 @@
-<h1>List of users</h1>
+<br>
+<br>
 
-<table border="1">
-  <tr>
-    <th>
-      Username
-    </th>
-    
-    <th>
-      Total Check Ins
-    </th>
+<div class="container">
+  <% @users.each do |user| %>  
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-auto">
+        <% if user.image != nil %>
+        <img style="width: 8rem;" src="<%= user.image %>" class="img-fluid" alt="<%= user.username %>">
+        <% else %>
+        <img style="width: 8rem;" src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="img-fluid" alt="<%= user.username %>">
+        <% end %>
+      </div>
+      <div class="col">
+        <div class="card-block px-2">
+          <h5 class="card-title"><%=user.username %></h5>
+          <p class="card-text"><%= user.bio %>
+            <br>
+          <a href="/users/<%= user.username %>">Show details</a>
+          <p class="card-text"><small class="text-muted">Last updated <%= time_ago_in_words(user.created_at) %> ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <th></th>
-  </tr>
-
-  <% @users.each do |user| %>
-    <tr>
-      <td>
-        <%= user.username %>
-      </td>
-      
-      <td>
-        <%= user.check_ins.count %>
-      </td>
-
-      <td>
-        <a href="/users/<%= user.username %>">Show details</a>
-      </td>
-    </tr>
   <% end %>
-</table>
+</div>

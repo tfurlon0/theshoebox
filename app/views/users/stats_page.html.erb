@@ -1,12 +1,54 @@
-<h1><%= @user.username %>'s Stats</h1>
+<br>
+<br>
 
-<dl>
-  <dt>Check Ins</dt>
-  <dd><%= @check_in_count %></dd>
-  
-  <dt>Locations Visited </dt>
-  <dd><% @user_location.each do |locate| %>
-  <%= locate.name %>
-  <% end %>
-  </dd>
-</dl>
+<div class ="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card rounded" style="width: 18rem;">
+        <% if @user.image != nil %>
+        <img src="<%= @user.image %>" class="card-img-top rounded-top" alt="...">
+        <% else %>
+        <img src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="card-img-top rounded-top" alt="...">
+        <%end%>
+          <div class="card-body">
+            <h5 class="card-title"><%= @user.username %>'s Bio</h5>
+              <p class="card-text"><%= @user.bio %></p>
+             <% if @user == current_user %>
+               <a href="/settings/<%= current_user.id %>" class="btn btn-primary">Edit Profile</a>
+             <% else %>
+              <a></a>
+             <%end%>
+          </div>
+      </div>
+    </div>
+
+  <div class="col-md-4">
+    <nav class="nav nav-tabs">
+      <a class="nav-link" href="/users/<%= @user.username %>">Timeline</a>
+      <a class="nav-link active" href="/users/<%= @user.username %>/own_stats">Stats</a>
+      <% if @user == current_user %>
+      <a class="nav-link" href="/new_check_in/<%= @user.username %>">Check In</a>
+      <% else %>
+      <a></a>
+      <% end %>
+    </nav>
+    <div>
+      <div class="card">
+        <div class="row no-gutters">
+            Total Check Ins: <%= @check_in_count %>
+        </div>
+        <div class="card">
+          <div class="row no-gutters">
+            Location's Visited:
+            <ul>
+              <% @user_location.each do |locate| %>
+                <%= locate.name %> <br>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+ </div>
+</div>

@@ -1,43 +1,14 @@
-<table class="table table-borderless">
-  <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Bio</th>
-    <th>Longitude</th>
-    <th>Latitude</th>
-    <th>Color</th>
-  </tr>
-  
+<br>
+<br>
+<div class="container">
   <% @the_location.each do |map| %>
-  <tr>
-    <td>
-      <img style="height: 12rem;" src="<%= map.image %>">
-    </td>
-    
-    <td>
-      <%= map.name %>
-    </td>
-    
-    <td>
-      <%= map.address %>
-    </td>
-    
-    <td>
-      <%= map.bio %>
-    </td>
-    
-    <td>
-      <%= map.lng %>
-    </td>
-    
-    <td>
-      <%= map.lat %>
-    </td>
-    
-    <td>
-      <%= map.color %>
-    </td>
-    <% end %>
-  </tr>
-</table>
+  <div class="card mb-3">
+    <img style="height: 100%; width: 100%;" src="<%= map.image %>" class="card-img-top" alt="<%= map.name %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= map.name %></h5>
+      <p class="card-text"><%= map.bio %></p>
+      <p class="card-text"><small class="text-muted">Updated <%= time_ago_in_words(map.updated_at) %> ago</small></p>
+    </div>
+  </div>
+  <% end %>
+</div>

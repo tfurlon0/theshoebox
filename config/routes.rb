@@ -19,15 +19,12 @@ Rails.application.routes.draw do
   match("/users/:qs_username/own_stats", { :controller => "users", :action => "stats", :via => "get" })
   match("/users/:qs_username/own_locations", {:controller => "users", :action => "locate", :via => "get" })
   match("/discover/:qs_user_id", {:controller => "users", :action => "index", :via => "get" })
-  
-  # Update User
-  
   match("/patch_user/:rt_user_id", { :controller => "users", :action => "update", :via => "post" })
   
   # CheckIn Routes
   
-  match("/new_check_in", { :controller => "check_ins", :action => "form", :via => "get" })
-  match("/create_check_in/:rt_user_id", { :controller => "check_ins", :action => "create", :via => "post" })
+  match("/new_check_in/:qs_username", { :controller => "check_ins", :action => "form", :via => "get" })
+  match("/create_check_in/:qs_username", { :controller => "check_ins", :action => "create", :via => "post" })
   
   match("/map/:qs_user_id", { :controller => "locations", :action => "map", :via => "get" })
   

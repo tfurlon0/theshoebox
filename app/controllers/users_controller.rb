@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!
+  
   def index
     @users = User.all.order({ :username => :asc })
 
@@ -76,6 +77,7 @@ class UsersController < ApplicationController
   def stats
     the_username = params.fetch(:qs_username)
     @user = User.where({ :username => the_username }).first
+    @user_check_ins = CheckIn.where({ :owner_id => @user.id })
     
     @check_in_count = CheckIn.where({ :owner_id => @user.id }).count
     
@@ -95,21 +97,21 @@ class UsersController < ApplicationController
   
   def update
     the_user_id = params.fetch(:rt_user_id)
-    user = User.where({ :id => the_user_id }).first
+    @user = User.where({ :id => the_user_id }).first
     
-    user.username = params.fetch(:qs_username, user.username)
-    user.bio = params.fetch(:qs_bio, user.bio)
-    user.image = params.fetch(:qs_photo, user.image)
+    @user.username = params.fetch(:qs_username, @user.username)
+    @user.bio = params.fetch(:qs_bio, @user.bio)
+    @user.image = params.fetch(:qs_photo, @user.image)
     
-    user.save
+    @user.save
     
     respond_to do |format|
       format.json do 
-        render({ :json => user.as_json })
+        render({ :json => @user.as_json })
       end
       
       format.html do
-        redirect_to("/users/#{user.username}")
+        redirect_to("/users/#{@user.username}")
       end
     end
   end

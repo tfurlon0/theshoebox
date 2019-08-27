@@ -5,13 +5,16 @@
   <div class="row">
     <div class="col-md-4">
       <div class="card rounded" style="width: 18rem;">
-        <img src="<%= @user.image %>" class="card-img-top rounded-top" alt="Go to settings to add a photo">
+        <% if @user.image != nil %>
+        <img src="<%= @user.image %>" class="card-img-top rounded-top" alt="...">
+        <% else %>
+        <img src="https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg" class="card-img-top rounded-top" alt="...">
+        <%end%>
           <div class="card-body">
             <h5 class="card-title"><%= @user.username %>'s Bio</h5>
               <p class="card-text"><%= @user.bio %></p>
-              <a href="/users/<%= @user.username %>/own_stats" class="btn btn-primary">Stats</a>
              <% if @user == current_user %>
-              <a href="/new_check_in" class="btn btn-primary">Check In</a>
+               <a href="/settings/<%= current_user.id %>" class="btn btn-primary">Edit Profile</a>
              <% else %>
               <a></a>
              <%end%>
@@ -19,7 +22,16 @@
       </div>
     </div>
 
-  <div class="col-md-8">
+  <div class="col-md-4">
+    <nav class="nav nav-tabs">
+      <a class="nav-link active" href="/users/<%= @user.username %>">Timeline</a>
+      <a class="nav-link" href="/users/<%= @user.username %>/own_stats">Stats</a>
+      <% if @user == current_user %>
+        <a class="nav-link" href="/new_check_in/<%= @user.username %>">Check In</a>
+      <% else %>
+        <a></a>
+      <% end %>
+    </nav>
     <div>
         <% @user_check_ins.each do |check| %>
         <% if @user_check_ins == nil %>
@@ -32,12 +44,12 @@
               <% if check.image != nil %>
               <img style="width: 15rem;" src="<%= check.image %>" class="img-fluid" alt="<%= check.location.name %>">
               <% else %>
-              <img style="width: 15rem;">
-              <%end%>
+                <img style="width: 15rem;" src="http://steinbeis-romania.com/wp-content/themes/aaika/assets/images/default.jpg" class="img-fluid" alt="<%= user.username %>">
+              <% end %>
             </div>
             <div class="col">
               <div class="card-block px-2">
-                <h5 class="card-title"><a href="/locations/<%=check.id %>"><%=check.location.name %></a></h5>
+                <h5 class="card-title"><a href="/locations/<%=check.location.id %>"><%=check.location.name %></a></h5>
                 <%= check.caption %>
                 <p class="card-text"><small class="text-muted"><%= time_ago_in_words(check.created_at) %> ago</small></p>
               </div>

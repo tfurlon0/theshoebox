@@ -1,21 +1,25 @@
-<div>
-  <dl>
-  <dt>Edit Info</dt>
-  <dd>
-    <form action="/patch_user/<%= current_user.id %>" method="post">
+<br>
+<br>
+
+<h4>Update Info</h4>
+
+<div class="container-fluid">
+  <div class="row align-items-start">
+    <div class="col align-self-start">
+     <form action="/patch_user/<%= current_user.id %>" method="post">
       <label for="browser_username">Username</label>
       <input id="browser_username" type="text" name="qs_username" placeholder="Update username..." value="<%= current_user.username %>">
-      
+      <br>
       <label for="browser_bio">Bio</label>
       <textarea id="browser_bio" type="text" name="qs_bio" placeholder="Enter a bio..."><%= current_user.bio %></textarea>
-      
+      <br>
       <label for="browser_photo">Profile Photo</label>
       <input id="browser_photo" type="text" name="qs_photo" placeholder="Enter image URL" value="<%= current_user.image %>">
-      
-      <button>
+      <br>
+      <button class="btn btn-primary">
         Update User
       </button>
-    </form>
-  </dd>
-  </dl>
+     </form>
+    </div>
+  </div>
 </div>
