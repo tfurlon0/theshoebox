@@ -41,11 +41,7 @@
         <div class="card">
           <div class="row no-gutters">
             <div class="col-auto">
-              <% if check.image != nil %>
               <img style="width: 15rem;" src="<%= check.image %>" class="img-fluid" alt="<%= check.location.name %>">
-              <% else %>
-                <img style="width: 15rem;" src="http://steinbeis-romania.com/wp-content/themes/aaika/assets/images/default.jpg" class="img-fluid" alt="<%= user.username %>">
-              <% end %>
             </div>
             <div class="col">
               <div class="card-block px-2">
@@ -53,11 +49,19 @@
                 <%= check.caption %>
                 <p class="card-text"><small class="text-muted"><%= time_ago_in_words(check.created_at) %> ago</small></p>
               </div>
+              <div>
+                <% if @user == current_user %>
+                <small class="card-text"><a href="/check_in/<%= check.id %>/delete">Delete Check In</a></small>
+                <% else %>
+                <p></p>
+                <% end %>
+              </div>
             </div>
           </div>
+         <%end%>
+         <%end%>
         </div>
-         <%end%>
-         <%end%>
+      </div>
     </div>
   </div>
 </div>

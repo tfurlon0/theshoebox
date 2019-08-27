@@ -10,7 +10,7 @@ class CheckInsController < ApplicationController
     @photo = Photo.new
     
     the_user = params.fetch(:qs_username, nil)
-    @user = User.where({ :username => the_user })
+    @user = User.where({ :username => the_user }).first
     @user_check_ins = CheckIn.where({ :owner_id => current_user.id })
     
     the_location_name = params.fetch(:qs_location, nil)
@@ -27,7 +27,7 @@ class CheckInsController < ApplicationController
     
     @check_in = CheckIn.new
     
-    @check_in.owner_id = the_user
+    @check_in.owner_id = @user.id
     @check_in.location_id = the_location_id
     @check_in.image = @photo
     @check_in.caption = the_caption
@@ -42,5 +42,15 @@ class CheckInsController < ApplicationController
         redirect_to("/users/#{the_user}")
       end
     end
+  end
+  
+  def destroy
+  
+    c = params.fetch(:qs_check_in_id)
+    check_in = CheckIn.where({ :id => c }).first
+    check_in.destroy
+    check_in.save
+    
+    redirect_to("/users/#{current_user.username}")
   end
 end

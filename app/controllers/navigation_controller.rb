@@ -20,7 +20,11 @@ class NavigationController < ApplicationController
   end
   
   def home
-    render({ :template => "/navigation/sign_in.html.erb" })
+    if current_user == nil
+      render({ :template => "/navigation/sign_in.html.erb" })
+    else
+      redirect_to("/users/#{current_user.username}")
+    end
   end
   
   def sign_in

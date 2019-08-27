@@ -115,4 +115,17 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def delete_warning
+    render("users/delete_warning")
+  end
+  
+  def destroy
+    user_id = params.fetch(:qs_user_id)
+    user = User.where({ :id => user_id }).first
+    user.destroy
+    user.save
+    
+    redirect_to("/sign_up", { :alert => "Account successfully deleted." })
+  end
 end
