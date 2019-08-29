@@ -29,7 +29,7 @@ class CheckInsController < ApplicationController
 
     @check_in.owner_id = @user.id
     @check_in.location_id = the_location_id
-    @check_in.image = @photo
+    @check_in.image = @photo.image
     @check_in.caption = the_caption
     @check_in.save
 

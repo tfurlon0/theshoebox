@@ -33,7 +33,7 @@
       <% end %>
     </nav>
     <div>
-        <% @user_check_ins.each do |check| %>
+        <% @user_check_ins.all.order({ :created_at => :desc }).each do |check| %>
         <% if @user_check_ins == nil %>
           <td> </td>
         <% else %>
