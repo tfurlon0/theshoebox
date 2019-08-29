@@ -28,12 +28,14 @@ Rails.application.routes.draw do
   match("/new_check_in/:qs_username", { :controller => "check_ins", :action => "form", :via => "get" })
   match("/create_check_in/:qs_username", { :controller => "check_ins", :action => "create", :via => "post" })
   match("/check_in/:qs_check_in_id/delete", { :controller => "check_ins", :action => "destroy", :via => "get" })
-  
-  match("/map/:qs_user_id", { :controller => "locations", :action => "map", :via => "get" })
+
   
   #Location Routes
-  
+    
+  match("/map/:qs_user_id", { :controller => "locations", :action => "map", :via => "get" })
   match("/locations/:qs_location_id", { :controller => "locations", :action => "show", :via => "get" })
+  match("/create_location", { :controller => "locations", :action => "create_form", :via => "get" })
+  match("/location_create", { :controller => "locations", :action => "create", :via => "post" })
   
   
   #------------------------------

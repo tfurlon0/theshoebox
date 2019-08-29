@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/firstdraft/draft_generators.git
-  revision: bcff710bd1ad6652ed5f9861104eeac518c29d31
+  revision: b18e9dde563fc195298a046452ad4fe745d3f837
   branch: spring-2019
   specs:
     draft_generators (0.0.3)
@@ -21,9 +21,9 @@ GIT
 
 GIT
   remote: https://github.com/firstdraft/web_git.git
-  revision: 69437ecbdef3bf4747772704964a5b33ea0524bd
+  revision: a0dd3aa71735515280c2378c0abb99b1ee9895d8
   specs:
-    web_git (0.0.3)
+    web_git (0.0.4)
       diffy
       git_clone_url
       jquery-rails
@@ -31,13 +31,14 @@ GIT
       tether-rails
       turbolinks (~> 5)
       tzinfo-data
+      yard (>= 0.9.20)
 
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: 6d9ef88bb05199dd5e3a30c8902d8a8e2bb1004d
+  revision: dc9e62f8919f2513b33a94815cb2a4c52285d0b3
   branch: master
   specs:
-    faker (2.1.2)
+    faker (2.2.0)
       i18n (>= 0.8)
 
 GEM
@@ -136,10 +137,10 @@ GEM
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
     debug_inspector (0.0.3)
-    devise (4.6.2)
+    devise (4.7.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 6.0)
+      railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
@@ -163,6 +164,7 @@ GEM
       uri-ssh_git (>= 2.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gmaps4rails (2.1.2)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
@@ -212,7 +214,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
-    nio4r (2.4.0)
+    nio4r (2.5.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     octicons (9.1.1)
@@ -222,6 +224,8 @@ GEM
       rails
     orm_adapter (0.5.0)
     pg (1.1.4)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -263,11 +267,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.3.3)
-    ransack (2.1.1)
+    ransack (2.3.0)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -313,9 +318,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (2.0.1)
+    sassc (2.2.0)
       ffi (~> 1.9)
-      rake
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
@@ -353,6 +357,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    underscore-rails (1.8.3)
     uri-ssh_git (2.0.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -361,7 +366,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webmock (3.6.2)
+    webmock (3.7.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -370,6 +375,7 @@ GEM
     websocket-extensions (0.1.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
@@ -389,6 +395,7 @@ DEPENDENCIES
   draft_generators!
   factory_bot_rails
   faker!
+  gmaps4rails
   grade_runner!
   hashdiff (>= 1.0.0.beta1, < 2.0.0)
   jbuilder (~> 2.5)
@@ -410,6 +417,7 @@ DEPENDENCIES
   table_print
   tzinfo-data
   uglifier (>= 1.3.0)
+  underscore-rails
   web-console (>= 3.3.0)
   web_git!
   webmock

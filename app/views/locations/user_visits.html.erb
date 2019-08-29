@@ -1,5 +1,8 @@
 <div class="container">
   <h1><%= @user.username %>'s Favorite Spots</h1>
+  <a href="/create_location" class="btn btn-outline-secondary">Create New Location</a>
+  <br>
+  <br>
   <% @user_location.each do |loc| %>  
   <div class="card">
     <div class="row no-gutters">

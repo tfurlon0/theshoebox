@@ -9,22 +9,24 @@ class LocationsController < ApplicationController
     return [lat,lng]
   end
   
+  def create_form
+    render("/locations/create.html.erb")
+  end
+  
   def create
+    new_name = params.fetch(:qs_location_name)
+    new_address = params.fetch(:qs_address)
+    new_image = params.fetch(:qs_image)
+    new_bio = params.fetch(:qs_bio)
+    
     @location = Location.new
-    @location.address = params.fetch(:qs_address)
-    @location.name = params.fetch(:qs_name)
-    @location.bio = params.fetch(:qs_bio)
-    @location.color = ["blue", "red", "purple", "yellow", "green"].sample
+    @location.name = new_name
+    @location.address = new_address
+    @location.image = new_image
+    @location.bio = new_bio
+    @location.save
     
-    latlng = address_to_geo(params[:qs_address])
-    @location.lat = latlng[0]
-    @location.lng = latlng[1]
-    
-    if @location.save
-      redirect_to("/locations/map.html.erb", :notice => "Place created successfully.")
-    else
-      render("new")
-    end
+    redirect_to("/locations/#{@location.id}")
   end
   
   def show
@@ -33,6 +35,9 @@ class LocationsController < ApplicationController
   end
   
   def map
+    user_checkin = CheckIn.where({ :owner_id => current_user.id }).first
+    @user_locations = Location.where({ :id => user_checkin })
+
     render("locations/map.html.erb")
   end
 end

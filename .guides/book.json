@@ -1,0 +1,17 @@
+{
+ "name": "Shoebox",
+ "children": [
+  {
+   "title": "Page 1",
+   "id": "39e2f1a0-b6cf-6aed-212c-aecd0765d03c",
+   "pageId": "39e2f1a0-b6cf-6aed-212c-aecd0765d03c",
+   "type": "page"
+  },
+  {
+   "title": "Page 2",
+   "id": "b6888cd2-19d9-d637-958f-434f559e8ece",
+   "pageId": "b6888cd2-19d9-d637-958f-434f559e8ece",
+   "type": "page"
+  }
+ ]
+}
